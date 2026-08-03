@@ -98,9 +98,7 @@ IT-Support-Cost-Optimization/
 ├── Report/
 │   └── IT Support Cost Optimization Report.pdf
 │
-└── README.md
-```
-
+└── README.me
 ---
 
 ## Limitations
