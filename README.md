@@ -80,6 +80,7 @@ The Power BI dashboard provides interactive insights into:
 * Most escalated issue subcategories
 
 
+
 ---
 
 ## Project Structure
@@ -99,6 +100,7 @@ IT-Support-Cost-Optimization/
 │   └── IT Support Cost Optimization Report.pdf
 │
 └── README.me
+
 ---
 
 ## Limitations
