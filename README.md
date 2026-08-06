@@ -85,6 +85,7 @@ The Power BI dashboard provides interactive insights into:
 
 ## Project Structure
 
+```text
 IT-Support-Cost-Optimization/
 │
 ├── SQL/
@@ -97,7 +98,7 @@ IT-Support-Cost-Optimization/
 │   └── IT Support Cost Optimization Report.pdf
 │
 └── README.me
-
+```
 ---
 
 ## Limitations
