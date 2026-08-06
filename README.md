@@ -87,11 +87,8 @@ The Power BI dashboard provides interactive insights into:
 
 IT-Support-Cost-Optimization/
 │
-├── Data/
-│   └── helpdesk.csv
-│
 ├── SQL/
-│   └── IT Support.sql
+│   └── IT Support Ticket Query.sql
 │
 ├── Dashboard/
 │   └── IT Support Tickets Dashboard.pbix
