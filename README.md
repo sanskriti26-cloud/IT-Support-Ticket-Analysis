@@ -29,7 +29,7 @@ The primary objectives of this analysis are:
 
 ---
 
-## Dataset
+## Dataset Understanding
 
 The dataset contains approximately **1 million IT support ticket records**, including information such as:
 
