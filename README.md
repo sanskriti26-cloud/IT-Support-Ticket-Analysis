@@ -4,8 +4,8 @@
 
 This project analyzes IT support ticket data to identify operational inefficiencies and provide data-driven recommendations for improving support performance. The analysis was conducted using **Microsoft SQL Server** for data exploration and **Microsoft Power BI Desktop** for dashboard visualization.
 
+## Problem Statement
 The project addresses the following business objectives:
-
 * Reduce IT support costs by 20%
 * Improve customer satisfaction above 4.2
 * Reduce unnecessary ticket escalations
