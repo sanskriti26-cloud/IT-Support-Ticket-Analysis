@@ -13,6 +13,13 @@ The project addresses the following business objectives:
 
 ---
 
+## Objectives
+The primary objectives of this analysis are:
+1. to identify opportunities to reduce IT support costs by 20% through improved ticket management and resource utilization.
+2. to analyze factors affecting customer satisfaction and identify improvements to achieve a satisfaction score above 4.2.
+3. to investigate escalation patterns and identify opportunities to minimize unnecessary ticket escalations.
+4. to evaluate engineer workload, ticket distribution, and resolution efficiency to optimize resource allocation.
+
 ## Tools Used
 
 
