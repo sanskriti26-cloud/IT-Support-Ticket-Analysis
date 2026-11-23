@@ -89,7 +89,6 @@ ORDER BY Escalation_Rate DESC;
 -- Insight: 
 -- Escalation rates are approximately 50% across all categories, with only minor differences.
 -- Since half of all tickets are escalated, improving first-level support documentation and technician training could significantly reduce unnecessary escalations.
------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Resolution Time by Status
 SELECT
@@ -100,9 +99,7 @@ FROM [support_tickets]
 GROUP BY Status;
 
 -- Insight: 
--- Resolution time averages are almost identical regardless of the status of the tickets.
--- This shows that ticket status is not a significant determinant of resolution time.
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Average resolution times are similar across ticket statuses, suggesting limited variation in resolution duration between the status groups in this dataset. However, status alone may not explain resolution time differences.
 
 -- Daily Ticket Trend
 SELECT
@@ -115,7 +112,6 @@ ORDER BY Date_Created;
 -- Insights:
 -- Ticket throughput on a daily basis is fairly consistent, averaging approximately 33,000 tickets a day with minor variations.
 -- The consistent work level implies that the staff requirement for each day may not spike.
------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Which teams handle which categories
 SELECT
@@ -128,7 +124,6 @@ ORDER BY Assigned_Team, Tickets DESC;
 
 -- Insights:
 -- Every team is related to only one issue type and vica versa
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Overall Resolution Statistis
 SELECT
