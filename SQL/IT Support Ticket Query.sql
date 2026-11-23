@@ -32,7 +32,7 @@ GROUP BY Priority
 ORDER BY Ticket_Count DESC;
 
 -- Insight: 
--- Ticket counts are evenly distributed across Low, Medium, High, and Critical priorities.
+-- Ticket counts are almost evenly distributed across Low, Medium, High, and Critical priorities.
 -- Support resources should therefore be planned to handle all priority levels efficiently while ensuring SLA compliance for higher-priority tickets.
 
 -- Average Resolution Time by Category
@@ -45,7 +45,7 @@ GROUP BY Category
 ORDER BY Avg_Resolution_Time DESC;
 
 -- Insight: 
--- Similar across all categories
+-- Average resolution time is relatively consistent across issue categories, indicating that no single category appears to create a substantial difference in average resolution duration.
 
 -- Average Resolution Time by Priority
 SELECT
@@ -62,15 +62,13 @@ ORDER BY Avg_Resolution_Time DESC;
 -- Workload of Teams
 SELECT
     Assigned_Team,
-    COUNT(*) AS Tickets_Handled,
-    ROUND(AVG(Resolution_Time_Hrs),2) AS Avg_Resolution_Time
+    COUNT(*) AS Tickets_Handled
 FROM [support_tickets]
 GROUP BY Assigned_Team
-ORDER BY Avg_Resolution_Time;
+ORDER BY Tickets_Handled;
 
 -- Insight:
 -- Desktop Support receives nearly twice as many tickets as any other support team. 
--- This indicates an uneven workload distribution and suggests the need for additional resources or process improvements to reduce the team's workload.
 
 --Escalation Rate by Category
 SELECT
@@ -84,22 +82,11 @@ SELECT
     ) AS Escalation_Rate
 FROM [support_tickets]
 GROUP BY Category
-ORDER BY Escalation_Rate DESC;
+ORDER BY Escalated_Tickts DESC, Escalation_Rate DESC;
 
 -- Insight: 
 -- Escalation rates are approximately 50% across all categories, with only minor differences.
 -- Since half of all tickets are escalated, improving first-level support documentation and technician training could significantly reduce unnecessary escalations.
-
--- Resolution Time by Status
-SELECT
-    Status,
-    COUNT(*) AS Tickets,
-    ROUND(AVG(Resolution_Time_Hrs),2) AS Avg_Resolution_Time
-FROM [support_tickets]
-GROUP BY Status;
-
--- Insight: 
-Average resolution times are similar across ticket statuses, suggesting limited variation in resolution duration between the status groups in this dataset. However, status alone may not explain resolution time differences.
 
 -- Daily Ticket Trend
 SELECT
@@ -111,7 +98,6 @@ ORDER BY Date_Created;
 
 -- Insights:
 -- Ticket throughput on a daily basis is fairly consistent, averaging approximately 33,000 tickets a day with minor variations.
--- The consistent work level implies that the staff requirement for each day may not spike.
 
 -- Which teams handle which categories
 SELECT
@@ -123,9 +109,9 @@ GROUP BY Assigned_Team, Category
 ORDER BY Assigned_Team, Tickets DESC;
 
 -- Insights:
--- Every team is related to only one issue type and vica versa
+-- Every team is related to only one issue type and vice versa
 
--- Overall Resolution Statistis
+-- Overall Resolution Statistics
 SELECT
     MIN(Resolution_Time_Hrs) AS Min_Time,
     MAX(Resolution_Time_Hrs) AS Max_Time,
@@ -148,7 +134,7 @@ SELECT
     ROUND(AVG(Resolution_Time_Hrs),2) AS Avg_Resolution_Time
 FROM [support_tickets]
 GROUP BY Category, Subcategory
-ORDER BY Avg_Resolution_Time DESC;
+ORDER BY Tickets DESC, Avg_Resolution_Time DESC;
 
 -- Insight:
 -- The highest average resolution times are concentrated in specific subcategories rather than across an entire issue category.
@@ -189,7 +175,6 @@ ORDER BY Escalation_Rate DESC;
 
 -- Insight:
 -- Certain subcategories show slightly higher escalation rates than others, although the differences are relatively small.
--- These issue types should be reviewed to identify common causes and improve first-level troubleshooting, helping reduce unnecessary escalations
 
 -- Resolution Time: Escalated vs Non-Escalated
 SELECT
@@ -203,6 +188,7 @@ GROUP BY Escalated;
 SELECT
     Assigned_Team,
     Priority,
+	COUNT(*) AS Tickets,
     ROUND(
         COUNT(*) * 100.0 /
         SUM(COUNT(*)) OVER (PARTITION BY Assigned_Team),
@@ -240,7 +226,7 @@ SELECT
     ) AS Fast_Tickets_Percentage,
 
     ROUND(
-        100.0 * SUM(CASE WHEN Resolution_Time_Hrs >= 4 AND Resolution_Time_Hrs <= 8 THEN 1 ELSE 0 END)
+        100.0 * SUM(CASE WHEN Resolution_Time_Hrs >= 4 AND Resolution_Time_Hrs < 8 THEN 1 ELSE 0 END)
         / COUNT(*), 2
     ) AS Normal_Tickets_Percentage,
 
