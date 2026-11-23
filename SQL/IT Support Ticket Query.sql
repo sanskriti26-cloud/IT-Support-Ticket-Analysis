@@ -199,10 +199,6 @@ SELECT
 FROM [support_tickets]
 GROUP BY Escalated;
 
--- Insight:
--- Certain subcategories show slightly higher escalation rates than others, although the differences are relatively small.
--- These issue types should be reviewed to identify common causes and improve first-level troubleshooting, helping reduce unnecessary escalations.
-
 -- Team Workload by Priority
 SELECT
     Assigned_Team,
