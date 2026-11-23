@@ -1,12 +1,14 @@
--- EXPLORATORY DATA ANALYSIS (EDA)
+-- =======================================================================================
+-- 01. EXPLORATORY DATA ANALYSIS (EDA)
+-- =======================================================================================
+
 -- Total Tickets
 SELECT 
 	COUNT(*) AS Total_Tickets
 FROM [support_tickets];
 
--- Insights: 
+-- Insight: 
 -- The dataset has 1 million IT support tickets in it. That seems large enough to look at workload distribution and support performance overall.
---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Tickets by Category
 SELECT
@@ -17,10 +19,9 @@ FROM [support_tickets]
 GROUP BY Category
 ORDER BY Total_Tickets DESC;
 
--- Insights: 
+-- Insight: 
 -- Tickets are distributed fairly evenly across categories. Around 20% each with "Software" a bit higher than the rest.
 -- This suggests demand is spread across multiple issue types so resources should be balanced rather than focused on one.
--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Tickets by Priority
 SELECT
@@ -33,7 +34,6 @@ ORDER BY Ticket_Count DESC;
 -- Insight: 
 -- Ticket counts are evenly distributed across Low, Medium, High, and Critical priorities.
 -- Support resources should therefore be planned to handle all priority levels efficiently while ensuring SLA compliance for higher-priority tickets.
------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Average Resolution Time by Category
 SELECT
@@ -46,7 +46,6 @@ ORDER BY Avg_Resolution_Time DESC;
 
 -- Insight: 
 -- Similar across all categories
------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Average Resolution Time by Priority
 SELECT
@@ -59,7 +58,6 @@ ORDER BY Avg_Resolution_Time DESC;
 -- Insight:
 -- The resolution times are relatively similar for all priority types (close to 5.24–5.25 hours).
 -- This indicates a balanced support process, although the critical tickets can be prioritized more to increase the customer satisfaction rate.
------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Workload of Teams
 SELECT
@@ -70,10 +68,9 @@ FROM [support_tickets]
 GROUP BY Assigned_Team
 ORDER BY Avg_Resolution_Time;
 
--- Insights:
+-- Insight:
 -- Desktop Support receives nearly twice as many tickets as any other support team. 
 -- This indicates an uneven workload distribution and suggests the need for additional resources or process improvements to reduce the team's workload.
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --Escalation Rate by Category
 SELECT
@@ -89,7 +86,7 @@ FROM [support_tickets]
 GROUP BY Category
 ORDER BY Escalation_Rate DESC;
 
--- Insights: 
+-- Insight: 
 -- Escalation rates are approximately 50% across all categories, with only minor differences.
 -- Since half of all tickets are escalated, improving first-level support documentation and technician training could significantly reduce unnecessary escalations.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -143,9 +140,11 @@ FROM [support_tickets];
 -- Insights:
 -- Resolution times range from 0.5 to 10 hours, with an average of 5.25 hours.
 -- Reducing the average resolution time through automation, knowledge bases, and faster issue routing could help achieve the organization's cost reduction target.
-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- DIAGNOSTIC ANALYSIS
+-- =======================================================================================
+-- 02. DIAGNOSTIC ANALYSIS
+-- =======================================================================================
+
 -- Slowest Subcategories
 SELECT
     Category,
@@ -156,10 +155,9 @@ FROM [support_tickets]
 GROUP BY Category, Subcategory
 ORDER BY Avg_Resolution_Time DESC;
 
--- Insights:
+-- Insight:
 -- The highest average resolution times are concentrated in specific subcategories rather than across an entire issue category.
 -- These subcategories should be prioritized for process improvements, better troubleshooting documentation, or specialized engineer training to reduce overall resolution time.
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Escalation by Priority
 SELECT
@@ -178,7 +176,6 @@ ORDER BY Escalation_Rate DESC;
 -- Insight:
 -- Escalation rates remain close to 50% across all priority levels, with only minor variations.
 -- This suggests that ticket priority alone is not a major driver of escalations, indicating that other factors such as issue complexity or support processes may have a greater influence.
-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Most Escalated Subcategories
 SELECT
@@ -195,10 +192,9 @@ FROM [support_tickets]
 GROUP BY Category, Subcategory
 ORDER BY Escalation_Rate DESC;
 
--- Insights:
+-- Insight:
 -- Certain subcategories show slightly higher escalation rates than others, although the differences are relatively small.
 -- These issue types should be reviewed to identify common causes and improve first-level troubleshooting, helping reduce unnecessary escalations
----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Resolution Time: Escalated vs Non-Escalated
 SELECT
@@ -208,10 +204,9 @@ SELECT
 FROM [support_tickets]
 GROUP BY Escalated;
 
--- Insights:
+-- Insight:
 -- Certain subcategories show slightly higher escalation rates than others, although the differences are relatively small.
 -- These issue types should be reviewed to identify common causes and improve first-level troubleshooting, helping reduce unnecessary escalations.
--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Team Workload by Priority
 SELECT
@@ -226,10 +221,9 @@ FROM [support_tickets]
 GROUP BY Assigned_Team, Priority
 ORDER BY Assigned_Team, Priority;
 
--- Insights:
+-- Insight:
 -- Ticket distribution across priorities is nearly uniform for all support teams.
 -- This indicates a balanced allocation of work, reducing the likelihood that any single team is overloaded with high-priority tickets
---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Category × Priority Matrix
 SELECT
@@ -241,10 +235,9 @@ FROM [support_tickets]
 GROUP BY Category, Priority
 ORDER BY Category, Priority;
 
--- Insights:
+-- Insight:
 -- Average resolution times remain consistent across different combinations of categories and priorities, with only slight differences.
 -- This suggests that the current support process maintains a relatively uniform service level regardless of ticket type or urgency.
---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Resolution Time Segmentation by Issue Category
 SELECT
@@ -269,7 +262,6 @@ FROM [support_tickets]
 GROUP BY Category
 ORDER BY Slow_Tickets_Percentage DESC;
 
--- Insights:
+-- Insight:
 -- All categories exhibit a similar distribution of fast, normal, and slow tickets, with most tickets falling within the normal resolution range.
 -- Since no category stands out as a significant bottleneck, optimization efforts should focus on improving overall support processes rather than targeting a single issue category.
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
