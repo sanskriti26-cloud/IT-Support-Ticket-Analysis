@@ -68,8 +68,8 @@ The following preprocessing steps were performed before analysis:
 ## Key Insights
 
 * Desktop Support handled nearly **2×** more tickets than other support teams.
-* Identified the slowest-resolving issue subcategories.
-* Identified the most frequently escalated issue subcategories.
+* Several issue subcategories consistently recorded higher resolution times, suggesting the presence of process bottlenecks or the need for additional technical expertise and training. 
+* Certain issue subcategories experienced noticeably higher escalation rates, indicating recurring technical complexity or opportunities to strengthen first-level support capabilities. 
 * Critical-priority tickets required slightly longer resolution times than the ideal service expectations.
 * Dashboard KPIs enable continuous monitoring of operational performance.
 
@@ -79,9 +79,9 @@ The following preprocessing steps were performed before analysis:
 
 The Power BI dashboard provides interactive insights into:
 
-* Ticket distribution by support team
+* Total number of ticket
 * Average resolution time
-* Escalation trends
+* Escalation rate and escalation trends
 * Daily ticket trends
 * Slowest issue subcategories
 * Most escalated issue subcategories
@@ -90,30 +90,6 @@ The Power BI dashboard provides interactive insights into:
 
 ---
 
-## Project Structure
-
-```text
-IT-Support-Cost-Optimization/
-│
-├── SQL/
-│   └── IT Support Ticket Query.sql
-│
-├── Dashboard/
-│   └── IT Support Tickets Dashboard.pbix
-│
-├── Report/
-│   └── IT Support Cost Optimization Report.pdf
-│
-└── README.me
-```
----
-
-## Limitations
-
-The dataset did not include:
-
-* Engineer Cost per Hour
-* Client Type
 * Customer Satisfaction Rating
 
 These fields would enable deeper cost and customer experience analysis.
